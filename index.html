@@ -44,14 +44,14 @@
         .logo-container img:hover {
             transform: scale(1.03);
         }
-        /* Oro Verde HCD destacado */
+        /* Oro Verde HCD destacado con brillo */
         .subtitulo-localidad {
             font-size: 28px;
             color: #2e7d32;
             font-weight: 800;
             margin-bottom: 2px;
             letter-spacing: 1.5px;
-            text-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
+            text-shadow: 0 2px 8px rgba(46, 125, 50, 0.4);
         }
         h2 { 
             font-size: 18px; 
@@ -70,7 +70,13 @@
         .tooltip-wrapper {
             position: relative;
             width: 100%;
+            z-index: 1;
         }
+        .tooltip-wrapper:hover {
+            z-index: 50;
+        }
+        
+        /* Estilo base con brillo superior muy alto y relieve tridimensional */
         .btn { 
             display: flex;
             align-items: center;
@@ -80,32 +86,42 @@
             padding: 15px 25px; 
             font-size: 17px; 
             color: #fff; 
-            background-color: #007bff; 
             text-decoration: none; 
             border-radius: 10px; 
             font-weight: 600; 
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            /* Brillo interior superior mucho más intenso */
+            box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.75), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.45);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
         }
         .btn:hover { 
             transform: translateY(-2px); 
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.9), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 8px 22px rgba(0, 0, 0, 0.6);
         }
-        /* Variantes de colores de botones con toque moderno */
+        
+        /* Tonos específicos con gradientes muy luminosos */
         .btn-blue {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            background: linear-gradient(to bottom, #70b5ff 0%, #1a73e8 50%, #1557b0 100%);
         }
+        /* Verde 1 (Cargar Archivos Web App / btn-script): Turquesa brillante */
+        .btn-script, .btn-green-light {
+            background: linear-gradient(to bottom, #42ebd5 0%, #11998e 50%, #0d736b 100%);
+        }
+        /* Verde 2: Esmeralda profundo (Google Sheets) */
         .btn-green { 
-            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
-        }
-        .btn-script {
-            background: linear-gradient(135deg, #164e38 0%, #0d3022 100%);
-            border-color: rgba(212, 175, 55, 0.4);
+            background: linear-gradient(to bottom, #6aff9c 0%, #38ef7d 50%, #1e8449 100%);
         }
         .btn-amarillo {
-            background: linear-gradient(135deg, #e0a800 0%, #b38600 100%);
-            color: #fff;
+            background: linear-gradient(to bottom, #fff14f 0%, #f1c40f 50%, #d4ac0d 100%);
+            color: #1a1a1a;
+            font-weight: 700;
+            text-shadow: none;
+        }
+        .btn-desk-gray {
+            background: linear-gradient(to bottom, #d0d7d9 0%, #636e72 50%, #2d3436 100%);
         }
         
         /* Definición del cartelito flotante mejorado */
@@ -118,15 +134,15 @@
             border-radius: 8px;
             padding: 10px 14px;
             position: absolute;
-            z-index: 10;
-            bottom: 120%;
+            z-index: 100;
+            bottom: 125%;
             left: 50%;
             transform: translateX(-50%) translateY(6px);
             opacity: 0;
             transition: opacity 0.25s ease, transform 0.25s ease;
             font-size: 13px;
             font-weight: 400;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
             border: 1px solid rgba(255,255,255,0.15);
             pointer-events: none;
         }
@@ -191,6 +207,14 @@
                     📂 Abrir Google Drive HCD
                 </a>
                 <span class="tooltip-text">visualizar documentos</span>
+            </div>
+
+            <!-- 5. Botón Repositorio de Documentos Escaneados -->
+            <div class="tooltip-wrapper">
+                <a href="https://drive.google.com/drive/u/3/folders/1WGqylRd9S1YUQ7NsxKi2JZKnzHtwCISW" target="_blank" class="btn btn-desk-gray">
+                    🗃️ Repositorio de Documentos Escaneados
+                </a>
+                <span class="tooltip-text">acceso a carpeta de archivos escaneados</span>
             </div>
         </div>
     </div>
