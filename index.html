@@ -3,86 +3,197 @@
 <head>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
-    <title>Panel de Accesos - Gestión Documental HCD</title>
+    <title>Panel de Accesos - Gestión Documental HCD Oro Verde</title>
     <style>
         body { 
-            font-family: Arial, sans-serif; 
-            background-color: #1a1a1a; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%); 
             color: #fff; 
-            padding: 50px 30px; 
+            padding: 30px 20px; 
             text-align: center; 
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Contenedor tipo Tarjeta Principal */
+        .main-card {
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            box-sizing: border-box;
+        }
+        .logo-container {
+            margin-bottom: 15px;
+        }
+        .logo-container img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2e7d32;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+        .logo-container img:hover {
+            transform: scale(1.03);
+        }
+        /* Oro Verde HCD destacado */
+        .subtitulo-localidad {
+            font-size: 28px;
+            color: #2e7d32;
+            font-weight: 800;
+            margin-bottom: 2px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px rgba(46, 125, 50, 0.3);
         }
         h2 { 
-            font-size: 28px; 
-            margin-bottom: 5px; 
-            color: #f1f1f1; 
-        }
-        p { 
-            color: #aaa; 
-            margin-bottom: 40px; 
+            font-size: 18px; 
+            margin-bottom: 25px; 
+            color: #b0b0b0; 
+            font-weight: 400;
         }
         .btn-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
+            gap: 16px;
+            width: 100%;
+        }
+        /* Estilos para los tooltips flotantes avanzados */
+        .tooltip-wrapper {
+            position: relative;
+            width: 100%;
         }
         .btn { 
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 100%;
             box-sizing: border-box;
-            padding: 18px 35px; 
-            font-size: 18px; 
+            padding: 15px 25px; 
+            font-size: 17px; 
             color: #fff; 
             background-color: #007bff; 
             text-decoration: none; 
-            border-radius: 6px; 
-            font-weight: bold; 
-            transition: 0.2s; 
-            border: 2px solid transparent;
+            border-radius: 10px; 
+            font-weight: 600; 
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         .btn:hover { 
-            background-color: #0056b3; 
-            transform: scale(1.02); 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        /* Variantes de colores de botones con toque moderno */
+        .btn-blue {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
         }
         .btn-green { 
-            background-color: #2e7d32; 
-        }
-        .btn-green:hover { 
-            background-color: #1b5e20; 
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
         }
         .btn-script {
-            background-color: #113828;
-            border-color: #d4af37;
+            background: linear-gradient(135deg, #164e38 0%, #0d3022 100%);
+            border-color: rgba(212, 175, 55, 0.4);
         }
-        .btn-script:hover {
-            background-color: #09231a;
-            border-color: #aa8c2c;
+        .btn-amarillo {
+            background: linear-gradient(135deg, #e0a800 0%, #b38600 100%);
+            color: #fff;
+        }
+        
+        /* Definición del cartelito flotante mejorado */
+        .tooltip-wrapper .tooltip-text {
+            visibility: hidden;
+            width: 230px;
+            background-color: rgba(20, 20, 20, 0.95);
+            color: #f1f1f1;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px 14px;
+            position: absolute;
+            z-index: 10;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            font-size: 13px;
+            font-weight: 400;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            pointer-events: none;
+        }
+        /* Flechita del cartelito */
+        .tooltip-wrapper .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: rgba(20, 20, 20, 0.95) transparent transparent transparent;
+        }
+        /* Mostrar el cartelito con animación fluida al pasar el cursor */
+        .tooltip-wrapper:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
 <body>
-    <h2>Gestión Documental HCD</h2>
-    <p>Haz clic en el botón del sistema que necesites abrir:</p>
-    
-<div class="btn-container">
-    <!-- 1. Botón AppSheet -->
-    <a href="https://www.appsheet.com/start/17eebf83-5fac-459c-97ab-b4af10ab55a3" target="_blank" class="btn">
-        📱 Abrir AppSheet Escritorio
-    </a>
-    
-    <!-- 2. Botón Google Sheets (Verde claro con enlace correcto) -->
-    <a href="https://docs.google.com/spreadsheets/d/1W2NxddcJM3LasDtHQg2tMZAoqFPGbAs5fTIxnizXpYQ/edit?pli=1&gid=1555433219#gid=1555433219" target="_blank" class="btn btn-green">
-        📊 Abrir Planilla Google Sheets
-    </a>
-    
-    <!-- 3. Botón Web App Apps Script (Verde oscuro con borde dorado) -->
-    <a href="https://script.google.com/macros/s/AKfycbxHz1GgCNi9yYtA_2ctdn3doTiTp66HZWhcYoEiEkq25KeOQrikX3VDiCeG6dzI_CaB/exec" target="_blank" class="btn btn-script">
-        📁 Cargar Archivos (Web App)
-    </a>
-</div>
+
+    <div class="main-card">
+        <!-- Logotipo Institucional -->
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo HCD Oro Verde" onerror="this.style.display='none';">
+        </div>
+
+        <div class="subtitulo-localidad">Oro Verde HCD</div>
+        <h2>Gestión Documental</h2>
+        
+        <div class="btn-container">
+            <!-- 1. Botón AppSheet -->
+            <div class="tooltip-wrapper">
+                <a href="https://www.appsheet.com/start/17eebf83-5fac-459c-97ab-b4af10ab55a3" target="_blank" class="btn btn-blue">
+                    📱 Abrir AppSheet Escritorio
+                </a>
+                <span class="tooltip-text">abrir aplicación para cargar documentos</span>
+            </div>
+            
+            <!-- 2. Botón Web App Apps Script -->
+            <div class="tooltip-wrapper">
+                <a href="https://script.google.com/macros/s/AKfycbxHz1GgCNi9yYtA_2ctdn3doTiTp66HZWhcYoEiEkq25KeOQrikX3VDiCeG6dzI_CaB/exec" target="_blank" class="btn btn-script">
+                    📥 Cargar Archivos (Web App)
+                </a>
+                <span class="tooltip-text">cargar directamente desde la web</span>
+            </div>
+
+            <!-- 3. Botón Google Sheets -->
+            <div class="tooltip-wrapper">
+                <a href="https://docs.google.com/spreadsheets/d/1W2NxddcJM3LasDtHQg2tMZAoqFPGbAs5fTIxnizXpYQ/edit?pli=1&gid=1555433219#gid=1555433219" target="_blank" class="btn btn-green">
+                    📊 Abrir Planilla Google Sheets
+                </a>
+                <span class="tooltip-text">vista de planillas</span>
+            </div>
+
+            <!-- 4. Botón Google Drive HCD -->
+            <div class="tooltip-wrapper">
+                <a href="https://drive.google.com/drive/u/3/home" target="_blank" class="btn btn-amarillo">
+                    📂 Abrir Google Drive HCD
+                </a>
+                <span class="tooltip-text">visualizar documentos</span>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
