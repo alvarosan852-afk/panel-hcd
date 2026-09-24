@@ -1,95 +1,222 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión Documental HCD</title>
+    <title>Panel de Accesos - Gestión Documental HCD Oro Verde</title>
     <style>
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%); 
+            color: #fff; 
+            padding: 30px 20px; 
+            text-align: center; 
             margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        h1 {
-            margin-bottom: 5px;
+        /* Contenedor tipo Tarjeta Principal */
+        .main-card {
+            background: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 40px 30px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            box-sizing: border-box;
+        }
+        .logo-container {
+            margin-bottom: 15px;
+        }
+        .logo-container img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2e7d32;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
+        }
+        .logo-container img:hover {
+            transform: scale(1.03);
+        }
+        /* Oro Verde HCD destacado con brillo */
+        .subtitulo-localidad {
             font-size: 28px;
+            color: #2e7d32;
+            font-weight: 800;
+            margin-bottom: 2px;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 8px rgba(46, 125, 50, 0.4);
         }
-        p {
-            color: #b0b0b0;
-            margin-bottom: 30px;
+        h2 { 
+            font-size: 18px; 
+            margin-bottom: 25px; 
+            color: #b0b0b0; 
+            font-weight: 400;
         }
-        .container {
+        .btn-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            width: 350px;
+            align-items: center;
+            gap: 16px;
+            width: 100%;
         }
-        .btn {
+        /* Estilos para los tooltips flotantes avanzados */
+        .tooltip-wrapper {
+            position: relative;
+            width: 100%;
+            z-index: 1;
+        }
+        .tooltip-wrapper:hover {
+            z-index: 50;
+        }
+        
+        /* Estilo base con brillo superior muy alto y relieve tridimensional */
+        .btn { 
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 14px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            color: #ffffff;
-            transition: opacity 0.2s;
-            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 15px 25px; 
+            font-size: 17px; 
+            color: #fff; 
+            text-decoration: none; 
+            border-radius: 10px; 
+            font-weight: 600; 
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            /* Brillo interior superior mucho más intenso */
+            box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.75), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.45);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
         }
-        .btn:hover {
-            opacity: 0.9;
+        .btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.9), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 8px 22px rgba(0, 0, 0, 0.6);
         }
-        /* Estilos de tus botones actuales */
-        .btn-azul {
-            background-color: #0056b3;
+        
+        /* Tonos específicos con gradientes muy luminosos */
+        .btn-blue {
+            background: linear-gradient(to bottom, #70b5ff 0%, #1a73e8 50%, #1557b0 100%);
         }
-        .btn-verde {
-            background-color: #28a745;
+        /* Verde 1 (Cargar Archivos Web App / btn-script): Turquesa brillante */
+        .btn-script, .btn-green-light {
+            background: linear-gradient(to bottom, #42ebd5 0%, #11998e 50%, #0d736b 100%);
         }
-        .btn-borde-amarillo {
-            background-color: #1e1e1e;
-            border: 2px solid #ffc107;
-            color: #ffffff;
+        /* Verde 2: Esmeralda profundo (Google Sheets) */
+        .btn-green { 
+            background: linear-gradient(to bottom, #6aff9c 0%, #38ef7d 50%, #1e8449 100%);
         }
-        /* Nuevo botón amarillo para el Drive del HCD */
         .btn-amarillo {
-            background-color: #d39e00;
-            color: #ffffff;
+            background: linear-gradient(to bottom, #fff14f 0%, #f1c40f 50%, #d4ac0d 100%);
+            color: #1a1a1a;
+            font-weight: 700;
+            text-shadow: none;
+        }
+        .btn-desk-gray {
+            background: linear-gradient(to bottom, #d0d7d9 0%, #636e72 50%, #2d3436 100%);
+        }
+        
+        /* Definición del cartelito flotante mejorado */
+        .tooltip-wrapper .tooltip-text {
+            visibility: hidden;
+            width: 230px;
+            background-color: rgba(20, 20, 20, 0.95);
+            color: #f1f1f1;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px 14px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            font-size: 13px;
+            font-weight: 400;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.15);
+            pointer-events: none;
+        }
+        /* Flechita del cartelito */
+        .tooltip-wrapper .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -6px;
+            border-width: 6px;
+            border-style: solid;
+            border-color: rgba(20, 20, 20, 0.95) transparent transparent transparent;
+        }
+        /* Mostrar el cartelito con animación fluida al pasar el cursor */
+        .tooltip-wrapper:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <h1>Gestión Documental HCD</h1>
-    <p>Haz clic en el botón del sistema que necesites abrir:</p>
+    <div class="main-card">
+        <!-- Logotipo Institucional -->
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo HCD Oro Verde" onerror="this.style.display='none';">
+        </div>
 
-    <div class="container">
-        <!-- Botón 1: AppSheet Escritorio -->
-        <a href="https://www.appsheet.com/start/17eebf83-5fac-459c-97ab-b4af10ab55a3?platform=desktop#appName=REGISTROGESTIONDOCUMENTALHCD-234340486-26-09-17-2&vss=H4sIAAAAAAAAA62PywrCMBBFf0Xuul-QrbgQqQsVN8ZFbKYSbJPSpGoJ-XcnPhBcqqthznAPdyLOhi7roKoTxC6-twWNEIgSm7EjCSExdTb0rpEoJJaqfcAVHY1nPCkV5SmRkPbFyxPIQ8TvNOI_bQoYTTaY2lCfndnArmeezznN4DOLVKAdgjo0dH-Esykxq101eNJbrvZDJT-3s2unrC6dZnWtGk_pBtSIBiqNAQAA&view=Registro%20Maestro" target="_blank" class="btn btn-azul">
-            📱 Abrir AppSheet Escritorio
-        </a>
+        <div class="subtitulo-localidad">Oro Verde HCD</div>
+        <h2>Gestión Documental</h2>
+        
+        <div class="btn-container">
+            <!-- 1. Botón AppSheet -->
+            <div class="tooltip-wrapper">
+                <a href="https://www.appsheet.com/start/17eebf83-5fac-459c-97ab-b4af10ab55a3" target="_blank" class="btn btn-blue">
+                    📱 Abrir AppSheet Escritorio
+                </a>
+                <span class="tooltip-text">abrir aplicación para cargar documentos</span>
+            </div>
+            
+            <!-- 2. Botón Web App Apps Script -->
+            <div class="tooltip-wrapper">
+                <a href="https://script.google.com/macros/s/AKfycbxHz1GgCNi9yYtA_2ctdn3doTiTp66HZWhcYoEiEkq25KeOQrikX3VDiCeG6dzI_CaB/exec" target="_blank" class="btn btn-script">
+                    📥 Cargar Archivos (Web App)
+                </a>
+                <span class="tooltip-text">cargar directamente desde la web</span>
+            </div>
 
-        <!-- Botón 2: Planilla Google Sheets -->
-        <a href="https://docs.google.com/spreadsheets/d/TU_ENLACE_DE_SHEETS" target="_blank" class="btn btn-verde">
-            📊 Abrir Planilla Google Sheets
-        </a>
+            <!-- 3. Botón Google Sheets -->
+            <div class="tooltip-wrapper">
+                <a href="https://docs.google.com/spreadsheets/d/1W2NxddcJM3LasDtHQg2tMZAoqFPGbAs5fTIxnizXpYQ/edit?pli=1&gid=1555433219#gid=1555433219" target="_blank" class="btn btn-green">
+                    📊 Abrir Planilla Google Sheets
+                </a>
+                <span class="tooltip-text">vista de planillas</span>
+            </div>
 
-        <!-- Botón 3: Cargar Archivos (Web App) -->
-        <a href="https://script.google.com/macros/s/TU_ENLACE_DE_SCRIPT/exec" target="_blank" class="btn btn-borde-amarillo">
-            📁 Cargar Archivos (Web App)
-        </a>
+            <!-- 4. Botón Google Drive HCD (Actualizado con la carpeta compartida) -->
+            <div class="tooltip-wrapper">
+                <a href="https://drive.google.com/drive/u/3/folders/1ZOtxhlChmB6BCPOLrtPgK51chZV6wJ7Q" target="_blank" class="btn btn-amarillo">
+                    📂 Abrir Google Drive HCD
+                </a>
+                <span class="tooltip-text">visualizar documentos</span>
+            </div>
 
-        <!-- Botón 4 NUEVO: Google Drive del HCD -->
-        <a href="https://drive.google.com/drive/u/3/home" target="_blank" class="btn btn-amarillo">
-            📂 Abrir Google Drive HCD
-        </a>
+            <!-- 5. Botón Repositorio de Documentos Escaneados -->
+            <div class="tooltip-wrapper">
+                <a href="https://drive.google.com/drive/u/3/folders/1WGqylRd9S1YUQ7NsxKi2JZKnzHtwCISW" target="_blank" class="btn btn-desk-gray">
+                    🗃️ Repositorio de Documentos Escaneados
+                </a>
+                <span class="tooltip-text">acceso a carpeta de archivos escaneados</span>
+            </div>
+        </div>
     </div>
 
 </body>
