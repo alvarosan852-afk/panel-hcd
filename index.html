@@ -76,7 +76,7 @@
             z-index: 50;
         }
         
-        /* Estilo base con brillo superior muy alto y relieve tridimensional */
+        /* Estilo base con brillo superior al máximo */
         .btn { 
             display: flex;
             align-items: center;
@@ -90,36 +90,37 @@
             border-radius: 10px; 
             font-weight: 600; 
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); 
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            /* Brillo interior superior mucho más intenso */
-            box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.75), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.45);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: inset 0 5px 10px rgba(255, 255, 255, 0.95), inset 0 -3px 6px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
             position: relative;
             z-index: 2;
+            cursor: pointer;
         }
         .btn:hover { 
             transform: translateY(-2px); 
-            box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.9), inset 0 -2px 4px rgba(0, 0, 0, 0.3), 0 8px 22px rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 6px 12px rgba(255, 255, 255, 1), inset 0 -3px 6px rgba(0, 0, 0, 0.4), 0 10px 25px rgba(0, 0, 0, 0.7);
+            border-color: #ffffff;
         }
         
-        /* Tonos específicos con gradientes muy luminosos */
+        /* Tonos específicos con gradientes ultra luminosos */
         .btn-blue {
-            background: linear-gradient(to bottom, #70b5ff 0%, #1a73e8 50%, #1557b0 100%);
+            background: linear-gradient(to bottom, #90c2ff 0%, #1a73e8 50%, #114c9c 100%);
         }
-        .btn-script, .btn-green-light {
-            background: linear-gradient(to bottom, #42ebd5 0%, #11998e 50%, #0d736b 100%);
+        .btn-script {
+            background: linear-gradient(to bottom, #6fffea 0%, #11998e 50%, #09524c 100%);
         }
         .btn-green { 
-            background: linear-gradient(to bottom, #6aff9c 0%, #38ef7d 50%, #1e8449 100%);
+            background: linear-gradient(to bottom, #8affb3 0%, #2ecc71 50%, #145a32 100%);
         }
         .btn-amarillo {
-            background: linear-gradient(to bottom, #fff14f 0%, #f1c40f 50%, #d4ac0d 100%);
-            color: #1a1a1a;
+            background: linear-gradient(to bottom, #fff780 0%, #f1c40f 50%, #9a7d0a 100%);
+            color: #111;
             font-weight: 700;
             text-shadow: none;
         }
         .btn-desk-gray {
-            background: linear-gradient(to bottom, #d0d7d9 0%, #636e72 50%, #2d3436 100%);
+            background: linear-gradient(to bottom, #ecf0f1 0%, #7f8c8d 50%, #2c3e50 100%);
         }
         
         /* Definición del cartelito flotante mejorado */
@@ -183,9 +184,9 @@
             
             <!-- 2. Botón Web App Apps Script -->
             <div class="tooltip-wrapper">
-                <a href="https://script.google.com/macros/s/AKfycbxHz1GgCNi9yYtA_2ctdn3doTiTp66HZWhcYoEiEkq25KeOQrikX3VDiCeG6dzI_CaB/exec" target="_blank" class="btn btn-script">
+                <div onclick="abrirWebApp()" class="btn btn-script">
                     📥 Cargar Archivos (Web App)
-                </a>
+                </div>
                 <span class="tooltip-text">cargar directamente desde la web</span>
             </div>
 
@@ -197,15 +198,15 @@
                 <span class="tooltip-text">vista de planillas</span>
             </div>
 
-            <!-- 4. Botón Google Drive HCD (Corregido sin /u/3/) -->
+            <!-- 4. Botón Google Drive HCD -->
             <div class="tooltip-wrapper">
-                <a href="https://drive.google.com/drive/my-drive" target="_blank" class="btn btn-amarillo">
+                <a href="https://drive.google.com/drive/u/2/my-drive" target="_blank" class="btn btn-amarillo">
                     📂 Abrir Google Drive HCD
                 </a>
                 <span class="tooltip-text">visualizar documentos</span>
             </div>
 
-            <!-- 5. Botón Repositorio de Documentos Escaneados (Corregido sin /u/3/) -->
+            <!-- 5. Botón Repositorio de Documentos Escaneados -->
             <div class="tooltip-wrapper">
                 <a href="https://drive.google.com/drive/folders/1WGqylRd9S1YUQ7NsxKi2JZKnzHtwCISW" target="_blank" class="btn btn-desk-gray">
                     🗃️ Repositorio de Documentos Escaneados
@@ -214,6 +215,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function abrirWebApp() {
+            var url = "https://script.google.com/macros/s/AKfycbzhmgmVCANps_SzrnVT6yUt0ZVO1ZbrN-Tcv_wKMtJuo7JSXf_4i4X4PKXxMtPJpiLo/exec";
+            window.open(url, '_blank');
+        }
+    </script>
 
 </body>
 </html>
